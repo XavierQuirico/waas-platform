@@ -2,6 +2,7 @@ import { auth } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 import { headers } from 'next/headers';
 import { getHostContext } from '@/lib/routing/host-context';
+import { PORTAL_ORIGIN } from '@/lib/routing/origins';
 
 // /portal is no longer a product page — it's a routing alias.
 // Middleware handles all real subdomain cases. This page is a safety net
@@ -11,9 +12,9 @@ export default async function PortalPage() {
   const host = hdrs.get('host') ?? '';
   const hostCtx = getHostContext(host);
 
-  // Production public host → send to portal subdomain
-  if (process.env.NODE_ENV === 'production' && hostCtx === 'public') {
-    redirect('https://portal.quiricostudios.com/dashboard');
+  // Production public host → send to the portal origin (not set in single-host mode)
+  if (PORTAL_ORIGIN && hostCtx === 'public') {
+    redirect(`${PORTAL_ORIGIN}/dashboard`);
   }
 
   // Production portal host → to dashboard

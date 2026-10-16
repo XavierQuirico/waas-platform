@@ -1,11 +1,7 @@
 import { clerkMiddleware } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
 import { getHostContext, isPublicPath } from '@/lib/routing/host-context';
-
-const IS_PROD = process.env.NODE_ENV === 'production';
-const PORTAL_ORIGIN = IS_PROD ? 'https://portal.quiricostudios.com' : null;
-const ADMIN_ORIGIN = IS_PROD ? 'https://admin.quiricostudios.com' : null;
-const PUBLIC_ORIGIN = IS_PROD ? 'https://quiricostudios.com' : null;
+import { ADMIN_ORIGIN, PORTAL_ORIGIN, PUBLIC_ORIGIN } from '@/lib/routing/origins';
 
 // Maps clean admin-subdomain path → internal /admin/... path for rewriting
 function getAdminInternalRewrite(pathname: string): string | null {
