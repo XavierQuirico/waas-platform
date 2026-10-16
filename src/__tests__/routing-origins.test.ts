@@ -36,6 +36,13 @@ describe('orígenes por superficie', () => {
     expect(origins.PUBLIC_ORIGIN).toBe('https://quiricostudios.com');
   });
 
+  it('una variable vacía cuenta como no definida y usa el valor por defecto', async () => {
+    vi.stubEnv('NODE_ENV', 'production');
+    vi.stubEnv('PORTAL_ORIGIN', '');
+    const origins = await loadOrigins();
+    expect(origins.PORTAL_ORIGIN).toBe('https://portal.quiricostudios.com');
+  });
+
   it('con NEXT_PUBLIC_SINGLE_HOST=true no redirige a ningún otro dominio, ni siquiera en producción', async () => {
     vi.stubEnv('NODE_ENV', 'production');
     vi.stubEnv('NEXT_PUBLIC_SINGLE_HOST', 'true');

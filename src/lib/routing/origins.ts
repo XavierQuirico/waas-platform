@@ -15,13 +15,13 @@ const SINGLE_HOST = process.env.NEXT_PUBLIC_SINGLE_HOST === 'true';
 const MULTI_HOST = IS_PROD && !SINGLE_HOST;
 
 export const PORTAL_ORIGIN: string | null = MULTI_HOST
-  ? (process.env.PORTAL_ORIGIN ?? 'https://portal.quiricostudios.com')
+  ? (process.env.PORTAL_ORIGIN || 'https://portal.quiricostudios.com')
   : null;
 
 export const ADMIN_ORIGIN: string | null = MULTI_HOST
-  ? (process.env.ADMIN_ORIGIN ?? 'https://admin.quiricostudios.com')
+  ? (process.env.ADMIN_ORIGIN || 'https://admin.quiricostudios.com')
   : null;
 
 export const PUBLIC_ORIGIN: string | null = MULTI_HOST
-  ? (process.env.PUBLIC_ORIGIN ?? 'https://quiricostudios.com')
+  ? (process.env.PUBLIC_ORIGIN || 'https://quiricostudios.com')
   : null;
