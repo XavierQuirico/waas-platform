@@ -1,0 +1,35 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# generated at build time (next-sitemap)
+public/robots.txt
+public/sitemap*.xml
+
+# environment (keep only the documented template)
+.env
+.env.*
+!.env.example
+
+# tests and reports
+coverage/
+test-results/
+playwright-report/
+tests/e2e/.auth/
+tests/e2e/.fixtures.json
+output/
+
+# deployment
+.vercel/
+
+# editors and OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+npm-debug.log*

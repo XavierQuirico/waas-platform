@@ -1,0 +1,71 @@
+/**
+ * QUIRICO STUDIOS — Self-hosted Font Declarations
+ * ─────────────────────────────────────────────────
+ * Clash Grotesk  → Headings / Display  (self-hosted woff2, /fonts/clash-grotesk/)
+ * Inter Tight    → Body / UI Labels    (CSS font stack — no remote fetch required)
+ * JetBrains Mono → Technical / Mono   (CSS font stack — no remote fetch required)
+ *
+ * Strategy: woff2 for Clash Grotesk; system-font fallbacks for body/mono.
+ * Build is fully reproducible without network access to Google Fonts.
+ */
+
+/* ─── FONT VARIABLES — offline-safe CSS custom properties ─── */
+:root {
+  /* Body/UI font: tries Inter Tight if available in browser cache,
+     falls back to condensed system fonts without any remote fetch. */
+  --font-inter-tight: 'Inter Tight', 'Arial Narrow', system-ui, sans-serif;
+
+  /* Mono font: JetBrains Mono if available, otherwise system monospace. */
+  --font-jetbrains-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, 'Courier New', monospace;
+}
+
+/* ─── CLASH GROTESK (Variable — preferred) ─── */
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('/fonts/clash-grotesk/ClashGrotesk-Variable.woff2') format('woff2');
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Individual weights as non-variable fallback */
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('/fonts/clash-grotesk/ClashGrotesk-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('/fonts/clash-grotesk/ClashGrotesk-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('/fonts/clash-grotesk/ClashGrotesk-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('/fonts/clash-grotesk/ClashGrotesk-Semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('/fonts/clash-grotesk/ClashGrotesk-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
