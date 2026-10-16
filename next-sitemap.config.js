@@ -21,8 +21,6 @@ module.exports = {
         allow: '/',
         disallow: ['/portal/', '/admin/', '/api/', '/acceder/'],
       },
-      { userAgent: 'GPTBot', allow: '/' },
-      { userAgent: 'ClaudeBot', allow: '/' },
       { userAgent: 'Googlebot', allow: '/' },
     ],
   },
