@@ -226,7 +226,7 @@ async function main() {
       status: 'STAGING_REVIEW' as const,
       paypalOrderId: 'DEMO-ORDER-003',
       paypalSubscriptionId: 'DEMO-SUB-003',
-      stagingUrl: 'https://ana-rodriguez-legal-demo.vercel.app',
+      stagingUrl: 'https://example.com/preview/estudio-legal-rodriguez',
       stagingDeployedAt: daysAgo(1),
       stagingReviewDeadlineAt: daysFromNow(2),
       productionStartedAt: daysAgo(4),
@@ -319,7 +319,7 @@ async function main() {
     { projectId: p3.id, eventType: 'status_changed', actorType: 'admin', fromStatus: 'ASSETS_SUBMITTED', toStatus: 'ASSETS_UNDER_REVIEW', createdAt: daysAgo(14) },
     { projectId: p3.id, eventType: 'status_changed', actorType: 'admin', fromStatus: 'ASSETS_UNDER_REVIEW', toStatus: 'PRODUCTION_STARTED', createdAt: daysAgo(10) },
     { projectId: p3.id, eventType: 'production_started', actorType: 'admin', createdAt: daysAgo(10) },
-    { projectId: p3.id, eventType: 'staging_deployed', actorType: 'admin', metadata: { stagingUrl: 'https://ana-rodriguez-legal-demo.vercel.app' }, createdAt: daysAgo(1) },
+    { projectId: p3.id, eventType: 'staging_deployed', actorType: 'admin', metadata: { stagingUrl: 'https://example.com/preview/estudio-legal-rodriguez' }, createdAt: daysAgo(1) },
     { projectId: p3.id, eventType: 'status_changed', actorType: 'admin', fromStatus: 'PRODUCTION_STARTED', toStatus: 'STAGING_REVIEW', createdAt: daysAgo(1) },
   );
 

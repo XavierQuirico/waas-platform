@@ -8,6 +8,26 @@ The platform runs the entire customer journey in one codebase: a public intake w
 
 > The product interface is in Spanish (its market). Code, tests and documentation are in English where practical.
 
+## Live demo
+
+**https://waas-platform-demo.vercel.app** — a sandbox deployment running on its own isolated services (a separate Neon database, a separate Clerk application and a PayPal Sandbox app). Every record in it is fictional.
+
+| Role | Email | Password | What to look at |
+| --- | --- | --- | --- |
+| Client | `ana.demo@example.com` | `vOosXUQSyxikAa7!8ea3b2` | Portal dashboard, project timeline, staging review and feedback, requests, billing |
+| Admin | `admin.demo@example.com` | `GzE9oDKfxareAa7!0859f3` | Project queue, asset review, quote calculator, catalog, billing overview |
+
+You can also try the public intake wizard at `/empezar` without signing in.
+
+What the demo leaves out, on purpose:
+
+- **File uploads are off** (no storage bucket is attached), so the materials step cannot upload files.
+- **Background workflows and email are off** (`INNGEST_DISABLED`, `EMAIL_DRY_RUN`): actions complete, but no follow-up jobs run and nothing is sent.
+- **AI suggestions use the deterministic fallback** (no LLM key is configured).
+- **PayPal runs against the Sandbox**, so no real money moves.
+
+The data may be reset at any time. Please do not enter personal information.
+
 ## Highlights
 
 - **Explicit project lifecycle.** A 17-state machine governs every project; every transition is validated and every write is conditional on the state that was read, so concurrent or repeated events cannot corrupt a project.
