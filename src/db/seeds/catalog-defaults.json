@@ -1,0 +1,3471 @@
+{
+  "seedVersion": "1.4.1",
+  "generatedAt": "2026-05-30",
+  "notes": "v1.4.1: Catálogo comercial final aprobado. 47 capacidades activas, 7 categorías, 6 categorías activas en portal. Reglas finales de solicitudes, mantenimiento LEGACY, e-commerce Legacy interno, hosting gestionado y reactivación alineadas con matriz aprobada.",
+  "policies": {
+    "suspension": {
+      "suspendedProjectBehavior": "commercial_requests_blocked_except_reactivation",
+      "allowedCapabilityCodesWhileSuspended": [
+        "R01"
+      ],
+      "closedProjectBehavior": "all_commercial_requests_blocked",
+      "reactivationRequiresAdminApprovalBeforePayment": true
+    },
+    "postLaunchWarranty": {
+      "enabled": true,
+      "durationBusinessHours": 72,
+      "startsAt": "project_liveAt",
+      "appliesToRequestKinds": [
+        "correction"
+      ],
+      "decision": "included_warranty",
+      "consumesRecurringAllowance": false,
+      "nullWarrantyEndsAtMeaning": "automatic_warranty_not_applicable"
+    },
+    "planChange": {
+      "downgradeRetroactiveOverage": false,
+      "upgradeAppliesToNewRequestsImmediately": true,
+      "currentPeriodConsumptionCountsAgainstNewPlan": true,
+      "openTicketSnapshotsRemainUnchanged": true,
+      "recurringAllowanceResetsOn": "next_calendar_month"
+    },
+    "priority": {
+      "highPriorityChangesPrice": false,
+      "highPriorityChangesSla": false,
+      "highPriorityBehavior": "admin_visual_label_only",
+      "defaultSlaHours": 48
+    },
+    "attachments": {
+      "enabled": true,
+      "maxFilesPerTicket": 5,
+      "maxFileSizeMb": 10,
+      "allowedMimeExtensions": [
+        "png",
+        "jpg",
+        "jpeg",
+        "webp",
+        "pdf",
+        "txt",
+        "docx"
+      ],
+      "requireMimeValidation": true,
+      "requireFilenameSanitization": true,
+      "requireOwnershipValidation": true
+    },
+    "clientCopy": {
+      "previewDisclaimer": "La disponibilidad se confirma al enviar.",
+      "includedValueTemplate": "Incluido en tu plan, valor {listValue}.",
+      "partialAvailabilityTemplate": "Tienes cupo para {includedQuantity} de {requestedQuantity} solicitados. Puedes enviar solo la cantidad incluida o pedir cotización.",
+      "planChangedCurrentPeriodTemplate": "Tu plan cambió este mes. Ya tienes consumos registrados para el periodo actual; tus nuevos cupos se reinician el 1 del próximo mes."
+    },
+    "legacyPolicy": {
+      "postDeliveryDefaultDecision": "quote_required",
+      "includedOrPaidRequiresExplicitRule": true,
+      "recurringAllowancesNotAssumed": true,
+      "closedProjectsBlocked": true
+    },
+    "approvalPolicy": {
+      "previewsCreateAuditEvents": false,
+      "confirmedSubmissionsCreateAuditEvents": true,
+      "paidTicketsRequireAdminApprovalBeforePayment": true,
+      "zeroDollarTicketsRequireIncludedDecision": true,
+      "adminOverrideRequiresReasonWhenChangingDecisionAvailabilityOrPrice": true
+    }
+  },
+  "portalCategories": [
+    {
+      "id": "cat_design_content",
+      "name": "design_content",
+      "publicName": "Cuidar y actualizar mi sitio",
+      "description": "Cambios menores, nueva sección, nueva página, actualizaciones de contenido y mantenimiento.",
+      "icon": "pencil",
+      "sortOrder": 1,
+      "active": true,
+      "visibilityRule": "always"
+    },
+    {
+      "id": "cat_text_content",
+      "name": "text_content",
+      "publicName": "Contenido y visibilidad",
+      "description": "Copywriting, blog, SEO, multi-idioma, publicaciones y contenido listo para publicar.",
+      "icon": "document-text",
+      "sortOrder": 2,
+      "active": true,
+      "visibilityRule": "always"
+    },
+    {
+      "id": "cat_visual_improvements",
+      "name": "visual_improvements",
+      "publicName": "Mejoras visuales",
+      "description": "Ajustes gráficos, banners, recursos visuales y animaciones para elevar la presentación de tu sitio.",
+      "icon": "sparkles",
+      "sortOrder": 3,
+      "active": true,
+      "visibilityRule": "always"
+    },
+    {
+      "id": "cat_new_features",
+      "name": "new_features",
+      "publicName": "Reservas y atención",
+      "description": "Booking simple, reservas avanzadas, chatbot FAQ, CRM/contacto, formularios y WhatsApp directo.",
+      "icon": "puzzle-piece",
+      "sortOrder": 4,
+      "active": true,
+      "visibilityRule": "always"
+    },
+    {
+      "id": "cat_catalog",
+      "name": "catalog",
+      "publicName": "Catálogo y ventas por WhatsApp",
+      "description": "Catálogo, categorías, productos, actualización de catálogo, carga asistida, favoritos/carrito local y pedido por WhatsApp.",
+      "icon": "squares-2x2",
+      "sortOrder": 5,
+      "active": true,
+      "visibilityRule": "project_has_catalog"
+    },
+    {
+      "id": "cat_ecommerce",
+      "name": "ecommerce",
+      "publicName": "E-commerce y operaciones avanzadas",
+      "description": "Módulos avanzados de e-commerce disponibles solo en proyectos Legacy. No se muestran como add-ons de portal.",
+      "icon": "shopping-bag",
+      "sortOrder": 6,
+      "active": false,
+      "visibilityRule": "always"
+    },
+    {
+      "id": "cat_reactivation",
+      "name": "reactivation",
+      "publicName": "Soporte, reactivación y mantenimiento",
+      "description": "Reactivar sitio, incidencias, mantenimiento LEGACY, hosting gestionado, backups y monitoreo.",
+      "icon": "play-circle",
+      "sortOrder": 7,
+      "active": true,
+      "visibilityRule": "project_suspended"
+    }
+  ],
+  "capabilities": [
+    {
+      "code": "B01",
+      "internalName": "Hosting incluido",
+      "publicName": "Hosting incluido",
+      "publicDescription": "Tu sitio vive en nuestra infraestructura segura, siempre disponible.",
+      "internalCategory": "custom",
+      "portalCategory": null,
+      "source": "waas_ticket",
+      "visibleInCalculator": false,
+      "visibleInTickets": false,
+      "visibleInProposals": true,
+      "visibleInPortal": false,
+      "listPriceCents": 1500,
+      "priceCents": 0,
+      "pricingMode": "included",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        },
+        "PRO": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        },
+        "LEGACY": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "B02",
+      "internalName": "SSL Certificate",
+      "publicName": "Seguridad SSL",
+      "publicDescription": "Certificado SSL activo - el candado verde que genera confianza en tu sitio.",
+      "internalCategory": "custom",
+      "portalCategory": null,
+      "source": "waas_ticket",
+      "visibleInCalculator": false,
+      "visibleInTickets": false,
+      "visibleInProposals": true,
+      "visibleInPortal": false,
+      "listPriceCents": 500,
+      "priceCents": 0,
+      "pricingMode": "included",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        },
+        "PRO": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        },
+        "LEGACY": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "B03",
+      "internalName": "SEO Básico",
+      "publicName": "SEO básico",
+      "publicDescription": "Tu sitio es visible para Google: metadatos, sitemap y Search Console configurados.",
+      "internalCategory": "custom",
+      "portalCategory": null,
+      "source": "waas_ticket",
+      "visibleInCalculator": false,
+      "visibleInTickets": false,
+      "visibleInProposals": true,
+      "visibleInPortal": false,
+      "listPriceCents": 15000,
+      "priceCents": 0,
+      "pricingMode": "included",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        },
+        "PRO": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        },
+        "LEGACY": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "B04",
+      "internalName": "Setup Correo Profesional",
+      "publicName": "Setup de correo profesional",
+      "publicDescription": "Te ayudamos a dejar configurado un correo profesional con tu dominio. El proveedor o buzón externo se gestiona aparte si aplica.",
+      "internalCategory": "custom",
+      "portalCategory": null,
+      "source": "waas_ticket",
+      "visibleInCalculator": false,
+      "visibleInTickets": false,
+      "visibleInProposals": true,
+      "visibleInPortal": false,
+      "listPriceCents": 5000,
+      "priceCents": 0,
+      "pricingMode": "included",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "paid",
+          "overageAddonCode": "EM01",
+          "allowedRequestKinds": [
+            "initial_delivery",
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "paid",
+          "overageAddonCode": "EM01",
+          "allowedRequestKinds": [
+            "initial_delivery",
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "paid",
+          "overageAddonCode": "EM01",
+          "allowedRequestKinds": [
+            "initial_delivery",
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "B05",
+      "internalName": "Formulario de Contacto",
+      "publicName": "Formulario de contacto",
+      "publicDescription": "Formulario simple para recibir consultas con los datos necesarios de contacto, notificación por email y registro base de leads.",
+      "internalCategory": "custom",
+      "portalCategory": null,
+      "source": "waas_ticket",
+      "visibleInCalculator": false,
+      "visibleInTickets": false,
+      "visibleInProposals": true,
+      "visibleInPortal": false,
+      "listPriceCents": 0,
+      "priceCents": 0,
+      "pricingMode": "included",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        },
+        "PRO": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        },
+        "LEGACY": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "B06",
+      "internalName": "Soporte Técnico & Monitoring",
+      "publicName": "Soporte técnico",
+      "publicDescription": "Soporte técnico razonable incluido. Cambios y mejoras van por capacidades del catálogo.",
+      "internalCategory": "custom",
+      "portalCategory": null,
+      "source": "waas_ticket",
+      "visibleInCalculator": false,
+      "visibleInTickets": false,
+      "visibleInProposals": true,
+      "visibleInPortal": false,
+      "listPriceCents": 0,
+      "priceCents": 0,
+      "pricingMode": "included",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance",
+            "correction"
+          ]
+        },
+        "PRO": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance",
+            "correction"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance",
+            "correction"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "B07",
+      "internalName": "FAQ Accordion",
+      "publicName": "Preguntas frecuentes",
+      "publicDescription": "Sección de preguntas y respuestas con acordeón incluida en tu sitio.",
+      "internalCategory": "custom",
+      "portalCategory": null,
+      "source": "waas_ticket",
+      "visibleInCalculator": false,
+      "visibleInTickets": false,
+      "visibleInProposals": true,
+      "visibleInPortal": false,
+      "listPriceCents": 0,
+      "priceCents": 0,
+      "pricingMode": "included",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        },
+        "PRO": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        },
+        "LEGACY": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "D01",
+      "internalName": "Quick Fix",
+      "publicName": "Ajuste rápido de contenido",
+      "publicDescription": "Cambio de texto, imagen, enlace o elemento visual puntual. No incluye diseño de nuevas secciones ni cambios estructurales. Listo en 48h hábiles.",
+      "internalCategory": "design",
+      "portalCategory": "cat_design_content",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 2900,
+      "priceCents": 2900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "included",
+          "inclusionScope": "recurring_allowance",
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 1,
+          "recurringPeriod": "calendar_month",
+          "overageMode": "paid",
+          "overageAddonCode": "D01",
+          "allowedRequestKinds": [
+            "change",
+            "correction",
+            "maintenance"
+          ]
+        },
+        "PRO": {
+          "availability": "included",
+          "inclusionScope": "recurring_allowance",
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 2,
+          "recurringPeriod": "calendar_month",
+          "overageMode": "paid",
+          "overageAddonCode": "D01",
+          "allowedRequestKinds": [
+            "change",
+            "correction",
+            "maintenance"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "included",
+          "inclusionScope": "recurring_allowance",
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 3,
+          "recurringPeriod": "calendar_month",
+          "overageMode": "paid",
+          "overageAddonCode": "D01",
+          "allowedRequestKinds": [
+            "change",
+            "correction",
+            "maintenance"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "change",
+            "correction"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "D02",
+      "internalName": "Bloque Nuevo",
+      "publicName": "Nueva sección",
+      "publicDescription": "Agrega una sección que no tenías: testimonios, precios, galería, preguntas frecuentes u otras. Incluye diseño y contenido inicial.",
+      "internalCategory": "design",
+      "portalCategory": "cat_design_content",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 5900,
+      "priceCents": 5900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "included",
+          "inclusionScope": "recurring_allowance",
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 1,
+          "recurringPeriod": "calendar_month",
+          "overageMode": "paid",
+          "overageAddonCode": "D02",
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "included",
+          "inclusionScope": "recurring_allowance",
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 1,
+          "recurringPeriod": "calendar_month",
+          "overageMode": "paid",
+          "overageAddonCode": "D02",
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "D03",
+      "internalName": "Página Extra",
+      "publicName": "Página adicional",
+      "publicDescription": "Una nueva página con su propia URL: portafolio, equipo, casos de éxito u otras. Incluye diseño completo adaptado a tu identidad.",
+      "internalCategory": "design",
+      "portalCategory": "cat_design_content",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 9900,
+      "priceCents": 9900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "C01",
+      "internalName": "Copywriting IA",
+      "publicName": "Redacción de textos para tu sitio",
+      "publicDescription": "Xavier redacta hasta 3 páginas de texto persuasivo en la voz de tu marca. Incluye revisión humana para que suene auténtico y profesional.",
+      "internalCategory": "content",
+      "portalCategory": "cat_text_content",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 14900,
+      "priceCents": 14900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "change",
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "change",
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "change",
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "change",
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "C02A",
+      "internalName": "Blog Estructura",
+      "publicName": "Sección de blog",
+      "publicDescription": "Estructura y sección de blog integrada en tu sitio.",
+      "internalCategory": "content",
+      "portalCategory": "cat_text_content",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 12900,
+      "priceCents": 12900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "C02B",
+      "internalName": "Blog Publicacion Contenido",
+      "publicName": "Publicación de contenido listo",
+      "publicDescription": "Sube tu contenido ya escrito y listo: lo subimos, formateamos y publicamos con imagen destacada y meta básico. 1 publicación/mes en PRO, 2 en BUSINESS. Extra: $19.",
+      "internalCategory": "content",
+      "portalCategory": "cat_text_content",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 1900,
+      "priceCents": 1900,
+      "pricingMode": "fixed",
+      "dependencies": [
+        "C02A"
+      ],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "included",
+          "inclusionScope": "recurring_allowance",
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 1,
+          "recurringPeriod": "calendar_month",
+          "overageMode": "paid",
+          "overageAddonCode": "C02B",
+          "allowedRequestKinds": [
+            "expansion",
+            "maintenance"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "included",
+          "inclusionScope": "recurring_allowance",
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 2,
+          "recurringPeriod": "calendar_month",
+          "overageMode": "paid",
+          "overageAddonCode": "C02B",
+          "allowedRequestKinds": [
+            "expansion",
+            "maintenance"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion",
+            "maintenance"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "C03",
+      "internalName": "SEO On-Page Pro",
+      "publicName": "SEO avanzado para competir mejor en Google",
+      "publicDescription": "Optimización completa para que aparezcas cuando buscan tu servicio en tu ciudad: Schema markup, velocidad de carga, palabras clave y estructura técnica.",
+      "internalCategory": "content",
+      "portalCategory": "cat_text_content",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 19900,
+      "priceCents": 19900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "C04",
+      "internalName": "Multi-Idioma",
+      "publicName": "Segundo idioma en tu sitio",
+      "publicDescription": "Activa un selector de idioma para que tu sitio esté disponible en otro idioma. Incluye la estructura técnica y el switch de idioma. El cliente entrega las traducciones; la traducción profesional se cotiza aparte.",
+      "internalCategory": "content",
+      "portalCategory": "cat_text_content",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 14900,
+      "priceCents": 14900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "I01",
+      "internalName": "External CRM / Newsletter Sync",
+      "publicName": "Conectar formulario a CRM o newsletter",
+      "publicDescription": "Conecta tus formularios a tu herramienta de CRM o newsletter externo: HubSpot, Zoho, Mailchimp, Brevo, ActiveCampaign u otra plataforma compatible. Los leads llegan automáticamente a tu herramienta. No incluye campañas, automatizaciones, estrategia, diseño de emails ni gestión de listas.",
+      "internalCategory": "integration",
+      "portalCategory": "cat_new_features",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 9900,
+      "priceCents": 9900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "I02",
+      "internalName": "Advanced Booking",
+      "publicName": "Sistema de reservas avanzado",
+      "publicDescription": "Sistema de agendamiento con múltiples calendarios, múltiples tipos de cita y configuraciones ampliadas para equipos con varios integrantes o tipos de servicio diferenciados. Incluye confirmaciones básicas. No incluye pagos online, SMS ni integraciones externas complejas. Para reservas básicas incluidas en tu plan, no necesitas este add-on.",
+      "internalCategory": "integration",
+      "portalCategory": "cat_new_features",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 12900,
+      "priceCents": 12900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "WA01",
+      "internalName": "Botón WhatsApp Directo",
+      "publicName": "Botón directo a WhatsApp",
+      "publicDescription": "Botón flotante que abre WhatsApp con tu número desde cualquier página. Tus visitantes te contactan con un solo toque, sin buscar tu número.",
+      "internalCategory": "integration",
+      "portalCategory": "cat_new_features",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": false,
+      "visibleInProposals": true,
+      "visibleInPortal": false,
+      "listPriceCents": 4900,
+      "priceCents": 0,
+      "pricingMode": "included",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        },
+        "PRO": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        },
+        "LEGACY": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "WA02",
+      "internalName": "Pedido por WhatsApp",
+      "publicName": "Pedido por WhatsApp",
+      "publicDescription": "Tus clientes eligen productos de tu catálogo y te envían el pedido completo por WhatsApp con un solo toque. Sin plataforma de pagos — simple y directo.",
+      "internalCategory": "integration",
+      "portalCategory": "cat_catalog",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 7900,
+      "priceCents": 0,
+      "pricingMode": "included",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "WA03",
+      "internalName": "Chatbot FAQ IA",
+      "publicName": "Asistente de preguntas frecuentes con IA",
+      "publicDescription": "Tu sitio responde preguntas frecuentes de forma automática, con información que tú apruebas. Si no sabe la respuesta o alcanza su límite operativo, deriva al WhatsApp. No inventa datos. Sujeto a límites de uso por sitio y sesión.",
+      "internalCategory": "integration",
+      "portalCategory": "cat_new_features",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 9900,
+      "priceCents": 9900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": "Este asistente responde preguntas frecuentes de tu negocio usando información que tú nos proporcionas. Si no conoce la respuesta, te redirige por WhatsApp."
+    },
+    {
+      "code": "I04",
+      "internalName": "Catalog Import",
+      "publicName": "Carga asistida de catálogo",
+      "publicDescription": "Carga hasta 50 productos desde tu archivo organizado. Requiere datos limpios y completos en plantilla. Datos desordenados o más de 50 productos se cotizan aparte.",
+      "internalCategory": "integration",
+      "portalCategory": "cat_catalog",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 9900,
+      "priceCents": 9900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion",
+            "maintenance"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "E01",
+      "internalName": "Catalog Update Small",
+      "publicName": "Actualización pequeña de catálogo",
+      "publicDescription": "Agrega, edita o elimina hasta 5 productos de tu catálogo: precio, nombre, texto corto, foto entregada o disponibilidad manual. Para 6 cambios o más, usa la actualización mediana.",
+      "internalCategory": "integration",
+      "portalCategory": "cat_catalog",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 1900,
+      "priceCents": 1900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "included",
+          "inclusionScope": "recurring_allowance",
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 2,
+          "recurringPeriod": "calendar_month",
+          "overageMode": "paid",
+          "overageAddonCode": "E01",
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        },
+        "LEGACY": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "E02",
+      "internalName": "Catalog Update Medium",
+      "publicName": "Actualización mediana de catálogo",
+      "publicDescription": "Agrega, edita o elimina hasta 15 productos de tu catálogo: precios, imágenes entregadas, textos cortos. No incluye carga masiva ni reestructuración de categorías.",
+      "internalCategory": "integration",
+      "portalCategory": "cat_catalog",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 4900,
+      "priceCents": 4900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        },
+        "LEGACY": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "T01",
+      "internalName": "Google Maps",
+      "publicName": "Google Maps",
+      "publicDescription": "Mapa simple con tu dirección, un marcador y botón Cómo llegar. Incluido en todos los planes.",
+      "internalCategory": "integration",
+      "portalCategory": "cat_new_features",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 4900,
+      "priceCents": 0,
+      "pricingMode": "included",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "T02",
+      "internalName": "Banner Pop-up Captacion",
+      "publicName": "Banner o pop-up de captación",
+      "publicDescription": "Pop-up simple o banner controlado para captar contactos, destacar una oferta o redirigir a WhatsApp. No incluye automatizaciones, A/B testing, campañas ni CRM externo.",
+      "internalCategory": "integration",
+      "portalCategory": "cat_new_features",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 4900,
+      "priceCents": 4900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "R01",
+      "internalName": "Reactivación",
+      "publicName": "Reactivar mi sitio",
+      "publicDescription": "Tu sitio está suspendido. Este pago reactiva tu sitio y nos permite validar que todo vuelva a funcionar correctamente.",
+      "internalCategory": "custom",
+      "portalCategory": "cat_reactivation",
+      "source": "waas_ticket",
+      "visibleInCalculator": false,
+      "visibleInTickets": true,
+      "visibleInProposals": false,
+      "visibleInPortal": true,
+      "listPriceCents": 2500,
+      "priceCents": 2500,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "reactivation"
+          ]
+        },
+        "PRO": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "reactivation"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "reactivation"
+          ]
+        },
+        "LEGACY": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "reactivation"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "CM02",
+      "internalName": "Formulario Multi-paso",
+      "publicName": "Formulario multi-paso",
+      "publicDescription": "Formulario con múltiples pasos para briefings, aplicaciones, consultas o onboarding. Incluye diseño, campos necesarios y envío por email. Formulario adicional o muy complejo: cotización.",
+      "internalCategory": "integration",
+      "portalCategory": "cat_new_features",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 9900,
+      "priceCents": 9900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "paid",
+          "overageAddonCode": "CM02",
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "paid",
+          "overageAddonCode": "CM02",
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "CE01",
+      "internalName": "Categorías Adicionales",
+      "publicName": "Categorías adicionales",
+      "publicDescription": "Agrega más de 4 categorías para organizar mejor tu catálogo o menú.",
+      "internalCategory": "integration",
+      "portalCategory": "cat_catalog",
+      "source": "legacy_calculator",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 3500,
+      "priceCents": 3500,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion",
+            "maintenance"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "CE02",
+      "internalName": "Filtros de Catálogo",
+      "publicName": "Filtros de búsqueda",
+      "publicDescription": "Tus clientes filtran por precio, categoría o disponibilidad en el catálogo.",
+      "internalCategory": "integration",
+      "portalCategory": "cat_catalog",
+      "source": "legacy_calculator",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 13900,
+      "priceCents": 13900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "CE04",
+      "internalName": "Disponibilidad",
+      "publicName": "Estado de disponibilidad",
+      "publicDescription": "Indica manualmente el estado de cada producto: Disponible, Agotado, Bajo pedido o Próximamente. No es inventario en tiempo real — el estado se actualiza por ticket.",
+      "internalCategory": "integration",
+      "portalCategory": "cat_catalog",
+      "source": "legacy_calculator",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 5900,
+      "priceCents": 5900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion",
+            "maintenance"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "XI01",
+      "internalName": "Google Analytics Basic",
+      "publicName": "Medición básica con Google Analytics",
+      "publicDescription": "Configura GA4 en tu sitio para medir visitas, páginas vistas, fuentes de tráfico básicas, dispositivos y páginas principales. Mide lo esencial para entender tu audiencia.",
+      "internalCategory": "integration",
+      "portalCategory": "cat_new_features",
+      "source": "legacy_calculator",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 9900,
+      "priceCents": 9900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery",
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "included",
+          "inclusionScope": "initial_setup",
+          "initialIncludedQty": 1,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "initial_delivery",
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "EM01",
+      "internalName": "Email 2-5 Cuentas",
+      "publicName": "Email corporativo 2-5 cuentas",
+      "publicDescription": "Ayudamos a configurar 2-5 buzones reales con proveedor externo (Google Workspace, Zoho Mail, Microsoft 365, etc.). El cliente paga el proveedor aparte. QUIRICO cobra setup/configuración.",
+      "internalCategory": "integration",
+      "portalCategory": "cat_new_features",
+      "source": "legacy_calculator",
+      "visibleInCalculator": false,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": false,
+      "listPriceCents": 4900,
+      "priceCents": 4900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "EM02",
+      "internalName": "Email 6-10 Cuentas",
+      "publicName": "Email corporativo 6-10 cuentas",
+      "publicDescription": "Ayudamos a configurar 6-10 buzones reales con proveedor externo. El cliente paga el proveedor aparte. QUIRICO cobra setup/configuración.",
+      "internalCategory": "integration",
+      "portalCategory": "cat_new_features",
+      "source": "legacy_calculator",
+      "visibleInCalculator": false,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": false,
+      "listPriceCents": 8900,
+      "priceCents": 8900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "CA02",
+      "internalName": "Recursos Visuales Adicionales",
+      "publicName": "Recursos visuales adicionales",
+      "publicDescription": "Paquete base de recursos visuales adicionales para tu sitio.",
+      "internalCategory": "content",
+      "portalCategory": "cat_visual_improvements",
+      "source": "legacy_calculator",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 3900,
+      "priceCents": 3900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "CA05",
+      "internalName": "Banner Hero",
+      "publicName": "Banner o hero gráfico",
+      "publicDescription": "Una pieza visual estática para banner, hero o sección destacada. Composición simple con imagen entregada y recursos base. No incluye ilustración compleja, branding completo ni campaña visual.",
+      "internalCategory": "content",
+      "portalCategory": "cat_visual_improvements",
+      "source": "legacy_calculator",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 3900,
+      "priceCents": 3900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "C05",
+      "internalName": "Email Template Design",
+      "publicName": "Diseño de plantilla para email",
+      "publicDescription": "Diseño de una plantilla visual para newsletter o comunicación puntual. No incluye campañas, automatizaciones, redacción continua ni gestión de listas.",
+      "internalCategory": "content",
+      "portalCategory": "cat_text_content",
+      "source": "waas_ticket",
+      "visibleInCalculator": false,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 0,
+      "priceCents": 0,
+      "pricingMode": "quote",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "C06",
+      "internalName": "Redaccion Articulo Blog",
+      "publicName": "Redacción de artículo de blog",
+      "publicDescription": "Artículo corto o estándar para tu blog basado en información que tú provees. Redacción ligera y preparado para publicar. No incluye investigación profunda, SEO avanzado ni diseño gráfico.",
+      "internalCategory": "content",
+      "portalCategory": "cat_text_content",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": true,
+      "visibleInPortal": true,
+      "listPriceCents": 2900,
+      "priceCents": 2900,
+      "pricingMode": "fixed",
+      "dependencies": [
+        "C02A"
+      ],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion",
+            "maintenance"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion",
+            "maintenance"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion",
+            "maintenance"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "EC01",
+      "internalName": "Pagos Online (Pasarela)",
+      "publicName": "Pagos en línea",
+      "publicDescription": "Integración de pasarela de pago (Stripe, PayPal, MercadoPago u otra). Requiere cotización.",
+      "internalCategory": "integration",
+      "portalCategory": "cat_ecommerce",
+      "source": "waas_ticket",
+      "visibleInCalculator": false,
+      "visibleInTickets": false,
+      "visibleInProposals": true,
+      "visibleInPortal": false,
+      "listPriceCents": 0,
+      "priceCents": null,
+      "pricingMode": "quote",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": "Requiere cotización. Nuestro equipo te contactará para evaluar el alcance."
+    },
+    {
+      "code": "EC03",
+      "internalName": "Gestion de Inventario",
+      "publicName": "Gestión de inventario",
+      "publicDescription": "Gestión de inventario integrada al proyecto. Puede ser manual/admin o sincronizado según alcance del proyecto Legacy. Requiere cotización.",
+      "internalCategory": "integration",
+      "portalCategory": "cat_ecommerce",
+      "source": "legacy_scope",
+      "visibleInCalculator": false,
+      "visibleInTickets": false,
+      "visibleInProposals": true,
+      "visibleInPortal": false,
+      "listPriceCents": 0,
+      "priceCents": null,
+      "pricingMode": "quote",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": "Requiere cotización. Nuestro equipo te contactará para evaluar el alcance."
+    },
+    {
+      "code": "EC04",
+      "internalName": "Gestion de Pedidos",
+      "publicName": "Gestión de pedidos",
+      "publicDescription": "Dashboard para ver, procesar y actualizar el estado de pedidos del proyecto. Requiere cotización como módulo Legacy Commerce.",
+      "internalCategory": "integration",
+      "portalCategory": "cat_ecommerce",
+      "source": "legacy_scope",
+      "visibleInCalculator": false,
+      "visibleInTickets": false,
+      "visibleInProposals": true,
+      "visibleInPortal": false,
+      "listPriceCents": 0,
+      "priceCents": null,
+      "pricingMode": "quote",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": "Requiere cotización. Nuestro equipo te contactará para evaluar el alcance."
+    },
+    {
+      "code": "EC05",
+      "internalName": "Portal Privado Login",
+      "publicName": "Portal privado / login",
+      "publicDescription": "Portal privado con registro, login y área exclusiva para clientes. Mapeado a tier Legacy PORTAL_APP. Requiere cotización.",
+      "internalCategory": "integration",
+      "portalCategory": "cat_ecommerce",
+      "source": "legacy_scope",
+      "visibleInCalculator": false,
+      "visibleInTickets": false,
+      "visibleInProposals": true,
+      "visibleInPortal": false,
+      "listPriceCents": 0,
+      "priceCents": null,
+      "pricingMode": "quote",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": "Requiere cotización. Nuestro equipo te contactará para evaluar el alcance."
+    },
+    {
+      "code": "EC07",
+      "internalName": "Membresias Cobros Recurrentes",
+      "publicName": "Membresías o cobros recurrentes",
+      "publicDescription": "Cargos automáticos, planes de membresía y gestión de suscriptores. Requiere pasarela con soporte de suscripciones. Cotización como módulo Legacy.",
+      "internalCategory": "integration",
+      "portalCategory": "cat_ecommerce",
+      "source": "legacy_scope",
+      "visibleInCalculator": false,
+      "visibleInTickets": false,
+      "visibleInProposals": true,
+      "visibleInPortal": false,
+      "listPriceCents": 0,
+      "priceCents": null,
+      "pricingMode": "quote",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "PRO": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "expansion"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": "Requiere cotización. Nuestro equipo te contactará para evaluar el alcance."
+    },
+    {
+      "code": "LM01",
+      "internalName": "LEGACY Care",
+      "publicName": "Care",
+      "publicDescription": "Mantenimiento mensual básico para proyectos LEGACY activos. Incluye 1 cambio menor al mes y soporte prioritario.",
+      "internalCategory": "maintenance",
+      "portalCategory": "cat_reactivation",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": false,
+      "visibleInPortal": false,
+      "listPriceCents": 4900,
+      "priceCents": 4900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        },
+        "PRO": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        },
+        "LEGACY": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "LM02",
+      "internalName": "LEGACY Care Plus",
+      "publicName": "Care Plus",
+      "publicDescription": "Mantenimiento mensual ampliado para proyectos LEGACY activos. Incluye hasta 2 cambios menores al mes y soporte prioritario.",
+      "internalCategory": "maintenance",
+      "portalCategory": "cat_reactivation",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": false,
+      "visibleInPortal": false,
+      "listPriceCents": 8900,
+      "priceCents": 8900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        },
+        "PRO": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        },
+        "LEGACY": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "LM03",
+      "internalName": "LEGACY Care Pro",
+      "publicName": "Care Pro",
+      "publicDescription": "Mantenimiento mensual avanzado para proyectos LEGACY activos. Incluye hasta 4 cambios menores al mes, soporte prioritario y revisión técnica recurrente.",
+      "internalCategory": "maintenance",
+      "portalCategory": "cat_reactivation",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": false,
+      "visibleInPortal": false,
+      "listPriceCents": 14900,
+      "priceCents": 14900,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        },
+        "PRO": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        },
+        "LEGACY": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "LM04",
+      "internalName": "Hosting Gestionado Basico",
+      "publicName": "Hosting gestionado básico",
+      "publicDescription": "Hosting gestionado para sitio estático o simple. Adicional al mantenimiento LEGACY.",
+      "internalCategory": "maintenance",
+      "portalCategory": "cat_reactivation",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": false,
+      "visibleInPortal": false,
+      "listPriceCents": 2000,
+      "priceCents": 2000,
+      "pricingMode": "fixed",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        },
+        "PRO": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        },
+        "LEGACY": {
+          "availability": "paid",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    },
+    {
+      "code": "LM05",
+      "internalName": "Hosting Personalizado",
+      "publicName": "Hosting personalizado",
+      "publicDescription": "Hosting personalizado para proyectos con backend, e-commerce, portal privado, base de datos, alto tráfico o infraestructura especial. Se cotiza según el caso, desde $35/mes.",
+      "internalCategory": "maintenance",
+      "portalCategory": "cat_reactivation",
+      "source": "waas_ticket",
+      "visibleInCalculator": true,
+      "visibleInTickets": true,
+      "visibleInProposals": false,
+      "visibleInPortal": false,
+      "listPriceCents": 0,
+      "priceCents": null,
+      "pricingMode": "quote",
+      "dependencies": [],
+      "conflicts": [],
+      "planRules": {
+        "BASIC": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        },
+        "PRO": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        },
+        "BUSINESS": {
+          "availability": "unavailable",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        },
+        "LEGACY": {
+          "availability": "quote",
+          "inclusionScope": null,
+          "initialIncludedQty": 0,
+          "recurringIncludedQty": 0,
+          "recurringPeriod": null,
+          "overageMode": "unavailable",
+          "overageAddonCode": null,
+          "allowedRequestKinds": [
+            "maintenance"
+          ]
+        }
+      },
+      "adminNotes": null,
+      "clientSpecialNote": null
+    }
+  ]
+}
