@@ -12,6 +12,9 @@ export interface SecurityHeader {
 }
 
 const CLERK_ORIGINS = ['https://*.clerk.accounts.dev', 'https://*.accounts.dev', 'https://*.clerk.com'];
+// Clerk Protect (detección de bots) hace sondas a hosts propios por puertos no estándar;
+// un origen CSP sin puerto solo cubre el 443, por eso se permite cualquier puerto.
+const CLERK_PROTECT_ORIGINS = ['https://*.protect.clerk.com:*'];
 const PAYPAL_ORIGINS = [
   'https://www.paypal.com',
   'https://www.sandbox.paypal.com',
@@ -44,6 +47,7 @@ export function buildContentSecurityPolicy(options: { isDev: boolean; appOrigins
     'connect-src': [
       "'self'",
       ...CLERK_ORIGINS,
+      ...CLERK_PROTECT_ORIGINS,
       ...own,
       ...PAYPAL_ORIGINS,
       ...SENTRY_ORIGINS,

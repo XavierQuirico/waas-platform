@@ -39,6 +39,10 @@ describe('Content-Security-Policy', () => {
     expect(directive(csp, 'frame-src').join(' ')).toContain('paypal.com');
   });
 
+  it('permite las sondas de Clerk Protect, que usan puertos no estándar', () => {
+    expect(directive(csp, 'connect-src')).toContain('https://*.protect.clerk.com:*');
+  });
+
   it('añade los orígenes propios indicados (p. ej. el dominio de Clerk)', () => {
     const custom = buildContentSecurityPolicy({
       isDev: false,
